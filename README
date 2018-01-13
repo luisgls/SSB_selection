@@ -1,0 +1,29 @@
+#Mega tool to detect positvely selected and negatively selected genes.
+#Luis Zapata 2017
+
+##Important points
+1) no header needed
+2) VEP annotated first column must be in the format (chr_pos_ref/alt)
+3) Correct VEP annotated file and remove chromosomes that are not 1-to-22 plus X-Y
+4) Be sure that you are using the GNU command line if you are running in a macosx (https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/)
+5) Rscript from R must be in your path
+
+###The UNIX system used should be able to recognize \t as a tab separator
+
+##To get help run the following command wo arguments
+./run_negDriver
+
+##To run with only missense and specifying a particular counts file
+##./run_negDriver input_file output_name output_folder -m data/finalVEP.triplets.counts
+
+##Notes
+-Genome fasta file should be formated all uppercase with chromosome labels as {1,2,3,4....X,Y}
+-Annotated mutation file from VEP should not contain MT or GL chromosomes
+
+
+##Dependencies
+bedtools 2.26.0
+R-3.3.3
+GNU command line tools
+library tidyr
+perl 5
