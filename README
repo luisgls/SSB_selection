@@ -7,20 +7,18 @@
 1.2) Unzip data into data folder
 1.3) Open run_negDriver script and specify the location of the genome file (e.g. hg19.genome) and the fasta file (e.g. hg19.fasta) 
 1.4) chmod +x run_negDriver
-1.5) run ./run_negDriver 
+
+2) run ./run_negDriver to see help
 
 ##Important points before running
-1) No header needed for input VEP file
-2) VEP annotated first column must be in the format (chr_pos_ref/alt)
-3) VEP annotated file must only have chromosomes that are 1,2,3,4...22 or uppercase X,Y
+a) No header needed for input VEP file
+b) VEP annotated first column must be in the format (chr_pos_ref/alt)
+c) VEP annotated file must only have chromosomes that are 1,2,3,4...22 or uppercase X,Y
 
 ###The UNIX system used should be able to recognize \t as a tab separator
-4) Be sure that you are using the GNU command line if you are running in a MacOS (https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/)
+d) Be sure that you are using the GNU command line if you are running in a MacOS (https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/)
 
-5) Add dependencies to your path for easy running or hardcode the scripts
-
-##To get help run the following command wo arguments
-./run_negDriver
+e) Add dependencies to your path for easy running or hardcode the scripts
 
 ##Dependencies
 bedtools 2.26.0
