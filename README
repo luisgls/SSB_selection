@@ -1,12 +1,21 @@
-#Mega tool to detect positvely selected and negatively selected genes.
+#Mega tool to detect positively selected and negatively selected genes in cancer exomes.
 #Luis Zapata 2017
 
-##Important points
-1) no header needed
+#Step by Step
+1) Download zipped data to run the tool from synapse syn11681953
+1.1) Create data folder within the cloned folder
+1.2) Unzip data into data folder
+1.3) Open run_negDriver script and specify the location of the genome file (e.g. hg19.genome) and the fasta file (e.g. hg19.fasta) 
+1.4) 
+
+
+
+##Important points before running
+1) No header needed for input VEP file
 2) VEP annotated first column must be in the format (chr_pos_ref/alt)
-3) Correct VEP annotated file and remove chromosomes that are not 1-to-22 plus X-Y
-4) Be sure that you are using the GNU command line if you are running in a macosx (https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/)
-5) Rscript from R must be in your path
+3) VEP annotated file must only have chromosomes that are 1,2,3,4...22 or X,Y
+4) Be sure that you are using the GNU command line if you are running in a MacOS (https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/)
+5) Add dependencies to your path for easy running or hardcode the scripts
 
 ###The UNIX system used should be able to recognize \t as a tab separator
 
@@ -20,10 +29,9 @@
 -Genome fasta file should be formated all uppercase with chromosome labels as {1,2,3,4....X,Y}
 -Annotated mutation file from VEP should not contain MT or GL chromosomes
 
-
 ##Dependencies
 bedtools 2.26.0
 R-3.3.3
-GNU command line tools
-library tidyr
+R library tidyr
 perl 5
+GNU command line tools

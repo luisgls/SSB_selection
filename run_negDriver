@@ -1,6 +1,13 @@
 #!/bin/bash
 ##Luis Zapata 2017. Identify negative selection in cancer genes
 
+
+###Important to edit before running
+####Hardcode where genome and fasta file are
+GENOME=data/hg19.genome
+FASTA=data/hg19.fasta
+
+##Check arguments before running
 if (($# < 3));  then
 	echo "Please provide the three mandatory arguments 
 	 -i VEP annotated input file 
@@ -14,6 +21,7 @@ if (($# < 3));  then
 	exit 1
 fi	
 
+##Explain each argument
 #input = i
 #name = n
 #outputdir = o
@@ -21,6 +29,7 @@ fi
 #model rate parameters = r
 #count model = c
 
+##Check all arguments
 while getopts "i:n:o:m:r:c:" opt; do
     case $opt in
 	i)
@@ -57,10 +66,6 @@ while getopts "i:n:o:m:r:c:" opt; do
 	;;	
     esac
 done
-
-####Hardcode where genome and fasta file are
-GENOME=data/hg19.genome
-FASTA=data/hg19.fasta
 
 ##Specify the number of rate parameters and the model to be used
 ##default 192 rates and all muts
