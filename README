@@ -10,6 +10,12 @@
 
 2) run ./run_negDriver to see help
 
+##Input file
+The input file is the standard output of variant effect predictor using the following command line (by providing to vep the ensembl default input file format)
+perl variant_effect_predictor.pl -i input -o input.annotated --cache --all_refseq --assembly GRCh37 --pick --symbol --no_stats --fasta genome.fasta
+
+Example input files can be found on synapse: ID syn11681983
+
 ##Important points before running
 a) No header needed for input VEP file
 b) VEP annotated first column must be in the format (chr_pos_ref/alt)
