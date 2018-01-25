@@ -21,6 +21,7 @@ synapse get -r syn11681952
 ##Input file
 The input file is the standard output of variant effect predictor using the following command line (by providing to vep the ensembl default input file format)
 perl variant_effect_predictor.pl -i input -o input.annotated --cache --all_refseq --assembly GRCh37 --pick --symbol --no_stats --fasta genome.fasta
+If you want to filter putative germline variants use the option --plugin ExAC when running VEP.
 
 Example input files can be found on synapse: ID syn11681983
 
@@ -28,11 +29,13 @@ Example input files can be found on synapse: ID syn11681983
 a) No header needed for input VEP file
 b) VEP annotated first column must be in the format (chr_pos_ref/alt)
 c) VEP annotated file must only have chromosomes that are 1,2,3,4...22 or uppercase X,Y
+d) After you run vep with the option for ExAC frequencies, it would be necessary to remove all variants present in more than 0.1 percent of the population. You could apply the filter using:
+filter_vep -i input.annotated -f "ExAC_AF < 0.1 or not ExAC_AF" --ontology --filter "Consequence is coding_sequence_variant" 
 
 ###The UNIX system used should be able to recognize \t as a tab separator
-d) Be sure that you are using the GNU command line if you are running in a MacOS (https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/)
+e) Be sure that you are using the GNU command line if you are running in a MacOS (https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/)
 
-e) Add dependencies to your path for easy running or hardcode the scripts
+f) Add dependencies to your path for easy running or hardcode the scripts
 
 ##Dependencies
 bedtools 2.26.0
@@ -40,3 +43,4 @@ R-3.3.3
 R library tidyr
 perl 5
 GNU command line tools
+variant effect predictor v89
