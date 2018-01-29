@@ -209,7 +209,7 @@ fi
 
 ##Add hugo name to file
 perl scripts/add_hugo.pl $NAME.counts.txt.mgd_res.txt data/ensembl2gene.final > $OUTDIR/$NAME.finalSSB.txt 
-perl scripts/calc_global_dnds.pl $OUTDIR/$NAME.finalSSB.txt > $OUTDIR/$NAME.globaldnds.txt
+Rscript scripts/calc_global_dnds.R $OUTDIR/$NAME.finalSSB.txt
 
 if [ -s "$OUTDIR/$NAME.finalSSB.txt" ]
 then
