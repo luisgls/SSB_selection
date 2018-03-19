@@ -50,3 +50,5 @@ e) Be sure that you are using the GNU command line if you are running in a MacOS
 
 f) Add dependencies to your path for easy running or hardcode the scripts
 
+NOTE:
+This version is a simplified and easy-to-use version of the tool developed in the manuscript "Negative Selection acts on tumour evolution acts on essential cellular functions and the immunopeptidome" (Under revision). For the reproducibility of the results presented in the manuscript, please contact the authors directly.
