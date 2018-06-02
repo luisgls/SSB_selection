@@ -52,4 +52,4 @@ f) Add dependencies to your path for easy running or hardcode the scripts
 g) The genome file used in SSB is a two column file that contains the info of the name of the fasta id (column 1) and the length of that sequence (column 2).
 
 NOTE:
-This version is a simplified and easy-to-use version of the tool developed in the manuscript "Negative Selection on tumour evolution acts on essential cellular functions and the immunopeptidome" (Under revision). For the reproducibility of the results presented in the manuscript, please contact the authors directly.
+This version is a simplified and easy-to-use version of the tool developed in the manuscript "Negative Selection on tumour evolution acts on essential cellular functions and the immunopeptidome" (https://doi.org/10.1186/s13059-018-1434-0). For the reproducibility of the results presented in the manuscript, please contact the authors directly.
