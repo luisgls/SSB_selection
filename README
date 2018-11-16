@@ -51,5 +51,11 @@ e) Be sure that you are using the GNU command line if you are running in a MacOS
 f) Add dependencies to your path for easy running or hardcode the scripts
 g) The genome file used in SSB is a two column file that contains the info of the name of the fasta id (column 1) and the length of that sequence (column 2).
 
-NOTE:
+NOTES:
 This version is a simplified and easy-to-use version of the tool developed in the manuscript "Negative Selection on tumour evolution acts on essential cellular functions and the immunopeptidome" (https://doi.org/10.1186/s13059-018-1434-0). For the reproducibility of the results presented in the manuscript, please contact the authors directly.
+
+The tool to run the analysis of the immunopeptidome is called SOPRANO:
+
+To run the tool with version 38 of the human genome, simply update the path of you GENOME and FASTA file in the run_negdriver script.
+Also, use the Data file provided in synapse labeled as Data2.zip. It contains updated transcript information.
+
