@@ -6,9 +6,6 @@ file.names <- args[1]
 #Read main file
 df<-read.table(file.names, header=T, sep="\t", quote="", stringsAsFactors=F, blank.lines.skip=T, dec=".")
 
-#setwd("/Users/lzapata/Dropbox (Personal)/Dropbox_CRG/Projects/NegativeSelection/negDriver_tool/negDriver/results/")
-#df<-read.csv("testcoad.ssb192.all.finalSSB.txt",header=T,sep="\t")
-
 ##Using real mutations SSB192
 m<-sum(df$nonsilent_variant)
 s<-sum(df$synonymous_variant)
