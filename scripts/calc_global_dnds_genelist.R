@@ -2,10 +2,12 @@ rm(list=ls())
 
 args <- commandArgs(trailingOnly = TRUE)
 file.names <- args[1]
-#file.names <- "~/Dropbox (Personal)/Projects/NegativeSelection/negDriver_tool/SSB_NatSel/results/pancan33.mutect.ssb192.all.finalSSB.txt"
+###Provide full path to the results from SSB###
+ttype<-basename(file.names)
 
+
+###Provide full path to the list of genes to test
 gene2test <- args[2]
-#gene2test <- "~/Dropbox (Personal)/Projects/NegativeSelection/Martincorena_dnds/Test_callsets/hg19/list_of_NOT_cancer_genes.txt"
 
 #Read main file and gene file
 df<-read.table(file.names, header=T, sep="\t", quote="", stringsAsFactors=F, blank.lines.skip=T, dec=".")
@@ -32,11 +34,12 @@ finalHighCI = globaldnds * exp(1.96*SE)
 
 N<-m+s
 df.global<-as.data.frame(cbind(globaldnds,finalLowCI,finalHighCI,N))
-colnames(df.global)<-c("globaldnds","low_CI","high_CI","Total_Muts")
+rownames(df.global)<-NULL
 
 a<-df.global
-print(a)
-#cat("\n")
+b<-cbind(ttype,a)
 
-#write.table(df.global,file=paste(file.names,"geneset_globaldnds.txt",sep="."), quote=F,sep='\t',row.names=F)
+df$pval_SSB.adj<-p.adjust(df$pval_SSB, method = "BH", n=length(df$Hugo_symbol))
 
+write.table(df,file=paste(file.names,"geneset.txt",sep="."), quote=F,sep='\t',row.names=F)
+write.table(b,file="",quote=F,row.names=F)
