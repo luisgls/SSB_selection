@@ -1,7 +1,5 @@
----
-title: "SSB-dN/dS Mega tool to detect positive nad negative selection in cancer exomes"
-author: Luis Zapata
----
+## SSB-dN/dS Mega tool to detect positive nad negative selection in cancer exomes"
+### author: Luis Zapata
 
 SSB dN/dS is a tool that calculates the ratio of nonsynonymous to synonymous mutations for genes using annotated variant data. Given that some mutational processes are more common than others, SSB-dN/dS uses a context correction method that normalizes for this bias (Somatic Substitution Bias, SSB). The tool and the results are described in  the manuscript:
 
