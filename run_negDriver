@@ -207,6 +207,12 @@ else
         exit 1
 fi
 
+#check fot existence of outdir of not create
+if [ ! -d $OUTDIR ]
+then
+	mkdir $OUTDIR
+fi
+
 ##Add hugo name to file
 perl scripts/add_hugo.pl $NAME.counts.txt.mgd_res.txt data/ensembl2gene.final > $OUTDIR/$NAME.finalSSB.txt 
 Rscript scripts/calc_global_dnds.R $OUTDIR/$NAME.finalSSB.txt
