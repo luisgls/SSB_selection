@@ -21,13 +21,19 @@ variant effect predictor v89
 - genome file is a two column file specifying the fasta id and the length of the sequence
 
 #### To install first clone the tool
-git clone https://github.com/luisgls/SSB_selection.git
 
+```{bash}
+git clone https://github.com/luisgls/SSB_selection.git
+```
 #### Install synapse client
+```{bash}
 pip install synapseclient
+```
 
 #### Download zipped data files from synapse syn11681952
+```{bash}
 synapse get -r syn11681952
+```
 
 #### Go to the tool directory and
 1.1) Create data folder within the cloned folder
