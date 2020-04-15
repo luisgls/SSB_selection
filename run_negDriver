@@ -217,7 +217,7 @@ fi
 ##Add hugo name to file
 perl $BASEDIR/scripts/add_hugo.pl $NAME.counts.txt.mgd_res.txt $BASEDIR/data/ensembl2gene.final > $OUTDIR/$NAME.finalSSB.txt 
 Rscript $BASEDIR/scripts/calc_global_dnds.R $OUTDIR/$NAME.finalSSB.txt
-Rscript $BASEDIR/scripts/calc_global_dnds_genelist.R $OUTDIR/$NAME.finalSSB.txt $BASEDIR/data/cancer_genes.txt
+Rscript $BASEDIR/scripts/calc_global_dnds_genelist.R $OUTDIR/$NAME.finalSSB.txt $BASEDIR/cancer_genes.txt
 
 if [ -s "$OUTDIR/$NAME.finalSSB.txt" ]
 then
