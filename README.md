@@ -70,3 +70,12 @@ The tool to run the analysis of the immunopeptidome is called [SOPRANO](https://
 To run the tool with version 38 of the human genome, simply update the path of you GENOME and FASTA file in the run_negdriver script.
 Also, use the Data file provided in synapse labeled as Data2.zip. It contains updated transcript information.
 
+## Genomes
+To get hg19 fasta genome, you can download it from USSC:
+]
+```{bash
+wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz
+
+wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.chrom.sizes
+
+```
