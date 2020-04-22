@@ -71,8 +71,8 @@ To run the tool with version 38 of the human genome, simply update the path of y
 Also, use the Data file provided in synapse labeled as Data2.zip. It contains updated transcript information.
 
 ## Genomes
-To get hg19 fasta genome, you can download it from USSC:
-]
+To get hg19 fasta genome, you can download it from UCSC:
+
 ```{bash
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz
 
