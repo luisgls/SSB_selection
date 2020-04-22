@@ -29,11 +29,11 @@ N2 <- S
 
 SE = sqrt( (1-p1)/(N1*p1) + (1-p2)/(N2*p2) )
 
-finalLowCI = globaldnds * exp(-1.96*SE)
-finalHighCI = globaldnds * exp(1.96*SE)
+LowCI = globaldnds * exp(-1.96*SE)
+HighCI = globaldnds * exp(1.96*SE)
 
 N<-m+s
-df.global<-as.data.frame(cbind(globaldnds,finalLowCI,finalHighCI,N))
+df.global<-as.data.frame(cbind(globaldnds,LowCI,HighCI,N))
 rownames(df.global)<-NULL
 
 a<-df.global
@@ -42,4 +42,4 @@ b<-cbind(ttype,a)
 df$pval_SSB.adj<-p.adjust(df$pval_SSB, method = "BH", n=length(df$Hugo_symbol))
 
 write.table(df,file=paste(file.names,"geneset.txt",sep="."), quote=F,sep='\t',row.names=F)
-write.table(b,file="",quote=F,row.names=F)
+write.table(b,file=paste(file.names,"driverdNdS.txt",sep="."),quote=F,sep='\t',row.names=F)

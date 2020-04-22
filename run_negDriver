@@ -3,9 +3,10 @@
 
 
 ###Important to edit before running
-####Hardcode where genome and fasta file are
-GENOME=data/hg19.genome
-FASTA=data/hg19.fasta
+####Hardcode where genome and fasta file are. Change to use other version of human assembly (GRCh38)
+BASEDIR="./"
+GENOME=$BASEDIR/data/hg19.genome
+FASTA=$BASEDIR/data/hg19.fasta
 
 ##Check arguments before running
 if (($# < 3));  then
@@ -69,36 +70,36 @@ done
 
 ##Specify the number of rate parameters and the model to be used
 ##default 192 rates and all muts
-DATAMODEL=data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.collapsed
+DATAMODEL=$BASEDIR/data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.collapsed
 
 if  [[ $MISSENSE = "mis" ]];
 then
     if [[ $MODEL = "ssb7" ]];
     then
         echo "Option ssb7 enabled and missense only. Running with 7 rate parameters"
-        DATAMODEL=data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.SSB7.nocollapse
+        DATAMODEL=$BASEDIR/data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.SSB7.nocollapse
     else
 	echo "Option ssb192 enabled and missense only. Running with 192 rate parameters"
-        DATAMODEL=data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.nocollapse
+        DATAMODEL=$BASEDIR/data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.nocollapse
     fi    
 elif [[ $MISSENSE = "non" ]];
 then
     if [[ $MODEL = "ssb7" ]];
     then
         echo "Option ssb7 enabled and nonsense only. Running with 7 rate parameters"
-        DATAMODEL=data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.SSB7.nonsense
+        DATAMODEL=$BASEDIR/data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.SSB7.nonsense
     else
 	echo "Option ssb192 enabled and nonsense only. Running with 192 rate parameters"
-        DATAMODEL=data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.SSB192.nonsense
+        DATAMODEL=$BASEDIR/data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.SSB192.nonsense
     fi
 else
     if [[ $MODEL = "ssb7" ]];
     then
         echo "Option ssb7 enabled and all mutations. Running with 7 rate parameters"
-        DATAMODEL=data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.SSB7.collapsed
+        DATAMODEL=$BASEDIR/data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.SSB7.collapsed
     else
 	echo "Option ssb192 enabled. Running with 192 rate parameters"
-        DATAMODEL=data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.collapsed
+        DATAMODEL=$BASEDIR/data/ensembl_syn_nonsyn_sites.trn.tsv.final.wide.collapsed
     fi      
 fi
 
@@ -111,9 +112,9 @@ cut -f1,5,7,11,12 $FILE | grep -v "#" | sed 's/_/\t/1' | sed 's/_/\t/1' | awk -F
 #2 For context correction
 bedtools slop -i $NAME.tmp -b 1 -g $GENOME | bedtools getfasta -fi $FASTA -bed stdin -tab | sed 's/:\|-/\t/g' > $NAME.tmp.bed
 #3
-paste $NAME.tmp $NAME.tmp.bed | cut -f6,14 - |  awk -F "/" '{FS="/"}{OFS="	"}{print $1,$2}' |  awk -F "" '{FS=""}{OFS="	"}{if( ($1==$6) && ($3!="-") ){print "GOOD"}else{print "FAIL"}}' > $NAME.flag
+paste $NAME.tmp $NAME.tmp.bed | cut -f6,14 - |  awk -F "/" '{FS="/"}{OFS="\t"}{print $1,$2}' |  awk -F "" '{FS=""}{OFS="\t"}{if( ($1==$6) && ($3!="-") ){print "GOOD"}else{print "FAIL"}}' > $NAME.flag
 #4
-paste $NAME.tmp $NAME.tmp.bed $NAME.flag | awk '{if($15=="GOOD"){print $0}}' - | cut -f6,14 - |  sort -k2,2 |uniq -c | sed 's/^ \+//g' | sort -k1,1 -n | sed 's/ /	/g' | awk '{OFS="\t"}{print $3,$2,$1}' | sed -e 's/	[A-Z]\//_/g' > $NAME.finalVEP.triplets.counts
+paste $NAME.tmp $NAME.tmp.bed $NAME.flag | awk '{if($15=="GOOD"){print $0}}' - | cut -f6,14 - |  sort -k2,2 |uniq -c | sed 's/^ \+//g' | sort -k1,1 -n | sed 's/ /\t/g' | awk '{OFS="\t"}{print $3,$2,$1}' | sed -e 's/\t[A-Z]\//_/g' > $NAME.finalVEP.triplets.counts
 
 
 if [ -s "$COUNTS" ]
@@ -129,8 +130,8 @@ fi
 if [[ $MODEL = "ssb7" ]];
     then
         echo "Option ssb7 enabled, transforming counts and running with 7 parameters"
-        perl scripts/transform192to7.pl $NAME.finalVEP.triplets.counts data/final_translate_SSB192toSSB7 | awk -F "\t" '{OFS="\t"}{print $3,1,2,$2}' | sortBed -i stdin | mergeBed -i stdin -c 4 -o sum | awk '{OFS="\t"}{print $1,$4}' > tmp_to_7
-        mv tmp_to_7 $NAME.finalVEP.triplets.counts
+        perl $BASEDIR/scripts/transform192to7.pl $NAME.finalVEP.triplets.counts $BASEDIR/data/final_translate_SSB192toSSB7 | awk -F "\t" '{OFS="\t"}{print $3,1,2,$2}' | sortBed -i stdin | mergeBed -i stdin -c 4 -o sum | awk '{OFS="\t"}{print $1,$4}' > $BASEDIR/tmp_to_7
+        mv $BASEDIR/tmp_to_7 $NAME.finalVEP.triplets.counts
 else
 	echo "Using ssb192 or provided count file"
 fi
@@ -165,7 +166,7 @@ egrep -v -e '##|intergenic_variant|UTR|downstream|intron|miRNA|frameshift|non_co
 egrep -e 'start_lost|stop_gained|stop_lost' | awk '{OFS="\t"}{print $1,1,2,"nonsilent_variant"}' | sort | uniq -c | sed 's/^ \+//g' | sed 's/ /\t/g' | awk '{OFS="\t"}{print $2,$5,$1}' > $NAME.nonsense
 
 ##Run for all nonsilent or only missense
-perl scripts/correctContext_revision.pl $NAME.finalVEP.triplets.counts $DATAMODEL | awk -F"\t" '{OFS="\t"}{print $1,1,2,$0}' | mergeBed -i stdin -c 5,6,7,8,9 -o count,sum,sum,sum,sum | cut -f1,5,6,7,8 > $NAME.SSBcorrected.txt
+perl $BASEDIR/scripts/correctContext_revision.pl $NAME.finalVEP.triplets.counts $DATAMODEL | awk -F"\t" '{OFS="\t"}{print $1,1,2,$0}' | mergeBed -i stdin -c 5,6,7,8,9 -o count,sum,sum,sum,sum | cut -f1,5,6,7,8 > $NAME.SSBcorrected.txt
 echo "Context correction done using $DATAMODEL"
 
 if  [[ $MISSENSE = "mis" ]];
@@ -191,7 +192,7 @@ fi
 ##Check if context correction has value larger than 0 and merge with counts
 if [ -s "$NAME.SSBcorrected.txt" ]
 then
-	Rscript scripts/longToWide_final.R $NAME.counts.txt $NAME.SSBcorrected.txt
+	Rscript $BASEDIR/scripts/longToWide_final.R $NAME.counts.txt $NAME.SSBcorrected.txt
 	echo "Merging counts and context corrected sites"
 else
         echo "$NAME.SSBcorrected.txt is empty."
@@ -201,7 +202,7 @@ fi
 ##Run Greenman method to detect significant genes
 if [ -s "$NAME.counts.txt.mgd" ]
 then
-	Rscript scripts/greenmanmethod_ContextCor_final.R $NAME.counts.txt.mgd
+	Rscript $BASEDIR/scripts/greenmanmethod_ContextCor_final.R $NAME.counts.txt.mgd
 else
         echo "$NAME.counts.txt.mgd is empty."
         exit 1
@@ -214,8 +215,9 @@ then
 fi
 
 ##Add hugo name to file
-perl scripts/add_hugo.pl $NAME.counts.txt.mgd_res.txt data/ensembl2gene.final > $OUTDIR/$NAME.finalSSB.txt 
-Rscript scripts/calc_global_dnds.R $OUTDIR/$NAME.finalSSB.txt
+perl $BASEDIR/scripts/add_hugo.pl $NAME.counts.txt.mgd_res.txt $BASEDIR/data/ensembl2gene.final > $OUTDIR/$NAME.finalSSB.txt 
+Rscript $BASEDIR/scripts/calc_global_dnds.R $OUTDIR/$NAME.finalSSB.txt
+Rscript $BASEDIR/scripts/calc_global_dnds_genelist.R $OUTDIR/$NAME.finalSSB.txt $BASEDIR/cancer_genes.txt
 
 if [ -s "$OUTDIR/$NAME.finalSSB.txt" ]
 then
