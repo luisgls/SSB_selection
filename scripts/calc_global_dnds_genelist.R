@@ -42,4 +42,4 @@ b<-cbind(ttype,a)
 df$pval_SSB.adj<-p.adjust(df$pval_SSB, method = "BH", n=length(df$Hugo_symbol))
 
 write.table(df,file=paste(file.names,"geneset.txt",sep="."), quote=F,sep='\t',row.names=F)
-write.table(b,file=paste(file.names,"driverdNdS.txt",sep="."),quote=F,sep='\t',row.names=F)
+write.table(b,file=paste(file.names,"geneset.globaldNdS.txt",sep="."),quote=F,sep='\t',row.names=F)
