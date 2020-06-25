@@ -1,4 +1,4 @@
-## SSB-dN/dS Mega tool to detect positive nad negative selection in cancer exomes
+## SSB-dN/dS Mega tool to detect positive and negative selection in cancer exomes
 ### *Luis Zapata*
 
 SSB dN/dS is a tool that calculates the ratio of nonsynonymous to synonymous mutations for genes using annotated variant data. Given that some mutational processes are more common than others, SSB-dN/dS uses a context correction method that normalizes for this bias (Somatic Substitution Bias, SSB). The tool and the results are described in  the manuscript:
@@ -9,7 +9,7 @@ SSB dN/dS is a tool that calculates the ratio of nonsynonymous to synonymous mut
 
 ### Dependencies
 bedtools 2.26.0
-R-3.3.3
+R-3.3.3 or higher.
 R library tidyr
 perl 5
 GNU command line tools
@@ -18,7 +18,8 @@ variant effect predictor v89
 #### Important Notes
 - earlier versions of bedtools will not work
 - tab encoding should be \t (might be a problem for windows/OSX versions)
-- genome file is a two column file specifying the fasta id and the length of the sequence
+- genome file is a two column file specifying the fasta id and the length of the sequence (see how to obtain it at the bottom)
+- Restrict your input dataset to chromosomes 1-22 and X and Y. Remove the rest.
 
 #### To install first clone the tool
 
@@ -71,8 +72,8 @@ To run the tool with version 38 of the human genome, simply update the path of y
 Also, use the Data file provided in synapse labeled as Data2.zip. It contains updated transcript information.
 
 ## Genomes
-To get hg19 fasta genome, you can download it from USSC:
-]
+To get hg19 fasta genome, you can download it from UCSC:
+
 ```{bash
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz
 
