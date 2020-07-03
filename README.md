@@ -1,7 +1,7 @@
-## SSB-dN/dS Mega tool to detect positive and negative selection in cancer exomes
+## SSB-dN/dS Method to detect positive and negative selection in cancer
 ### *Luis Zapata*
 
-SSB dN/dS is a tool that calculates the ratio of nonsynonymous to synonymous mutations for genes using annotated variant data. Given that some mutational processes are more common than others, SSB-dN/dS uses a context correction method that normalizes for this bias (Somatic Substitution Bias, SSB). The tool and the results are described in  the manuscript:
+SSB dN/dS is a tool that calculates the ratio of nonsynonymous to synonymous mutations (dN/dS) for genes using annotated variant data. Given that some mutational processes are more common than others, SSB-dN/dS uses a context correction method that normalizes for this bias (Somatic Substitution Bias, SSB). The tool and the results are described in  the manuscript:
 
 ["Negative Selection on tumour evolution acts on essential cellular functions and the immunopeptidome"](https://doi.org/10.1186/s13059-018-1434-0).
 
