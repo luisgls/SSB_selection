@@ -26,7 +26,7 @@ variant effect predictor v89
 ```{bash}
 git clone https://github.com/luisgls/SSB_selection.git
 ```
-#### Install synapse client
+#### Install synapse client you need pip from python
 ```{bash}
 pip install synapseclient
 ```
