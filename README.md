@@ -8,12 +8,20 @@ SSB dN/dS is a tool that calculates the ratio of nonsynonymous to synonymous mut
 ## Installation
 
 ### Dependencies
-bedtools 2.26.0
-R-3.3.3 or higher.
+bedtools 2.26.0 
+https://github.com/arq5x/bedtools2
+
+R-3.3.3 or higher
+
 R library tidyr
+
 perl 5
+
+variant effect predictor v89 or higher
+
 GNU command line tools
-variant effect predictor v89
+
+
 
 #### Important Notes
 - earlier versions of bedtools will not work
