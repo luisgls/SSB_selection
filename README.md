@@ -38,13 +38,17 @@ synapse get -r syn11681952
 
 #### Go to the tool directory and
   1.1) Create data folder within the cloned folder
+  
   1.2) Unzip data files into data folder (Data.zip for HG19, and Data2.zip for GRCh38)
+  
   1.3) Unzip Example_files into example directory 
+  
   1.4) Open run_negDriver script and specify the location of the genome file (e.g. hg19.genome) and the fasta file (e.g. hg19.fasta) 
+  
   1.5) You need to also mody the BASEDIR parameter where your currrent instalation of the scripts are.
+  
   1.5) chmod +x run_negDriver
   
-
 2) run ./run_negDriver to see help
 
 ## Input file
