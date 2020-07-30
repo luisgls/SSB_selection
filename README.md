@@ -72,13 +72,22 @@ Example input files can be found on synapse: ID syn11681983
 
 #### Important points before running
 a) No header needed for input VEP file
+
 b) VEP annotated first column must be in the format (chr_pos_ref/alt)
+
 c) VEP annotated file must only have chromosomes that are 1,2,3,4...22 or uppercase X,Y
+
 d) After you run vep with the option for ExAC frequencies, it would be necessary to remove all variants present in more than 0.1 percent of the population. You could apply the filter using:
+```{bash}
 filter_vep -i input.annotated -f "ExAC_AF < 0.1 or not ExAC_AF" --ontology --filter "Consequence is coding_sequence_variant" 
+```
+
 e) Be sure that you are using the GNU command line if you are running in a MacOS (https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/)
+
 f) Add dependencies to your path for easy running or hardcode the scripts
+
 g) The genome file used in SSB is a two column file that contains the info of the name of the fasta id (column 1) and the length of that sequence (column 2).
+
 h) The UNIX system used should be able to recognize \t as a tab separator
 
 NOTES:
