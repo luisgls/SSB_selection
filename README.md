@@ -53,7 +53,11 @@ synapse get -r syn11681952
 
 ## Input file
 The input file is the standard output of variant effect predictor using the following command line (by providing to vep the ensembl default input file format)
+
+```{bash}
 perl variant_effect_predictor.pl -i input -o input.annotated --cache --all_refseq --assembly GRCh37 --pick --symbol --no_stats --fasta genome.fasta
+```
+
 If you want to filter putative germline variants use the option --plugin ExAC when running VEP.
 
 Example input files can be found on synapse: ID syn11681983
