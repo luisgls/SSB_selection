@@ -108,3 +108,5 @@ wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.chrom.sizes
 
 ```
+
+Remember to modify the fasta file to contain only uppercase letters.
