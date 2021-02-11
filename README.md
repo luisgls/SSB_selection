@@ -13,6 +13,8 @@ https://github.com/arq5x/bedtools2
 
 R-3.3.3 or higher
 
+Python (to install the synapse client)
+
 R library tidyr
 
 perl 5
@@ -34,7 +36,7 @@ GNU command line tools
 ```{bash}
 git clone https://github.com/luisgls/SSB_selection.git
 ```
-#### Install synapse client you need pip from python
+#### Install synapse client  *need pip from python
 ```{bash}
 pip install synapseclient
 ```
