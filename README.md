@@ -41,7 +41,7 @@ git clone https://github.com/luisgls/SSB_selection.git
 pip install synapseclient
 ```
 
-#### Download zipped data files from synapse syn11681952
+#### Download zipped data files from synapse syn11681952 (you need to create a user in https://www.synapse.org/)
 ```{bash}
 synapse get -r syn11681952
 ```
