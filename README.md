@@ -13,6 +13,8 @@ https://github.com/arq5x/bedtools2
 
 R-3.3.3 or higher
 
+Python (to install the synapse client)
+
 R library tidyr
 
 perl 5
@@ -34,12 +36,12 @@ GNU command line tools
 ```{bash}
 git clone https://github.com/luisgls/SSB_selection.git
 ```
-#### Install synapse client you need pip from python
+#### Install synapse client  *need pip from python
 ```{bash}
 pip install synapseclient
 ```
 
-#### Download zipped data files from synapse syn11681952
+#### Download zipped data files from synapse syn11681952 (you need to create a user in https://www.synapse.org/)
 ```{bash}
 synapse get -r syn11681952
 ```
@@ -108,3 +110,5 @@ wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.chrom.sizes
 
 ```
+
+Remember to modify the fasta file to contain only uppercase letters.
