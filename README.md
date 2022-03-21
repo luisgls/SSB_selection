@@ -66,14 +66,38 @@ unzip Data2.zip
 mkdir example
 mv ExampleFile.zip example
   ```
+  1.4) Get genome fasta and chrom sizes files. Edit run_negDriver script and specify the location of the genome file (e.g. hg19.genome) and the fasta file (e.g. hg19.fasta)
   
-  1.4) Open run_negDriver script and specify the location of the genome file (e.g. hg19.genome) and the fasta file (e.g. hg19.fasta) 
+  ## Genomes
+To get hg19 fasta genome, you can download it from UCSC:
+
+```{bash}
+wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz
+
+wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.chrom.sizes
+
+```
+## Genomes
+To get hg38 fasta genome, you can download it from UCSC:
+
+```{bash}
+wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
+
+wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.chrom.sizes
+
+```
   
-  1.5) You need to also mody the BASEDIR parameter where your currrent instalation of the scripts are.
+  1.5) You need to also mody the BASEDIR parameter where you have clone the repository.
   
-  1.5) chmod +x run_negDriver
+  1.6) Transform the main script into executable
+ ```{bash} 
+ chmod +x run_negDriver
+  ```
   
-2) run ./run_negDriver to see help
+  2) To see help
+```{bash}
+./run_negDriver
+```
 
 ## Input file
 The input file is the standard output of variant effect predictor using the following command line (by providing to vep the ensembl default input file format)
@@ -83,8 +107,8 @@ perl variant_effect_predictor.pl -i input -o input.annotated --cache --all_refse
 ```
 
 If you want to filter putative germline variants use the option --plugin ExAC when running VEP.
-
 Example input files can be found on synapse: ID syn11681983
+
 
 #### Important points before running
 a) No header needed for input VEP file
@@ -114,23 +138,5 @@ The tool to run the analysis of the immunopeptidome is called [SOPRANO](https://
 #### Run the tool for other reference assemblies
 To run the tool with version 38 of the human genome, simply update the path of you GENOME and FASTA file in the run_negdriver script.
 Also, use the Data file provided in synapse labeled as Data2.zip. It contains updated transcript information.
-
-## Genomes
-To get hg19 fasta genome, you can download it from UCSC:
-
-```{bash}
-wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz
-
-wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.chrom.sizes
-```
-## Genomes
-To get hg38 fasta genome, you can download it from UCSC:
-
-```{bash}
-wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
-
-wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.chrom.sizes
-
-```
 
 Remember to modify the fasta file to contain only uppercase letters.
