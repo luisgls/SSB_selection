@@ -43,15 +43,29 @@ pip install synapseclient
 
 #### Download zipped data files from synapse syn11681952 (you need to create a user in https://www.synapse.org/)
 ```{bash}
+cd SSB_selection
 synapse get -r syn11681952
 ```
 
 #### Go to the tool directory and
   1.1) Create data folder within the cloned folder
-  
+  ```{bash}
+mkdir data
+  ```
   1.2) Unzip data files into data folder (Data.zip for HG19, and Data2.zip for GRCh38)
-  
+  ```{bash}
+mkdir data/
+mv Data.zip data/ 
+mv Data2.zip data/
+cd data/
+unzip Data.zip
+unzip Data2.zip
+  ```
   1.3) Unzip Example_files into example directory 
+```{bash}
+mkdir example
+mv ExampleFile.zip example
+  ```
   
   1.4) Open run_negDriver script and specify the location of the genome file (e.g. hg19.genome) and the fasta file (e.g. hg19.fasta) 
   
