@@ -24,7 +24,6 @@ variant effect predictor v89 or higher
 GNU command line tools
 
 
-
 #### Important Notes
 - earlier versions of bedtools will not work
 - tab encoding should be \t (might be a problem for windows/OSX versions)
@@ -77,7 +76,6 @@ wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.chrom.sizes
 
 ```
-## Genomes
 To get hg38 fasta genome, you can download it from UCSC:
 
 ```{bash}
@@ -86,7 +84,6 @@ wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
 wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.chrom.sizes
 
 ```
-  
   1.5) You need to also mody the BASEDIR parameter where you have clone the repository.
   
   1.6) Transform the main script into executable
