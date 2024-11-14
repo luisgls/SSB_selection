@@ -110,9 +110,9 @@ echo "Proccessing $FILE VEP annotated file to estimate 192 and 7 rate parameters
 #1
 cut -f1,5,7,11,12 $FILE | grep -v "#" | sed 's/_/\t/1' | sed 's/_/\t/1' | awk -F"\t" '{OFS="\t"}{if($6!="-"&&length($3)==3){print $1,$2-1,$2,$0}}' > $NAME.tmp
 #2 For context correction
-bedtools slop -i $NAME.tmp -b 1 -g $GENOME | bedtools getfasta -fi $FASTA -bed stdin -tab | sed 's/:\|-/\t/g' > $NAME.tmp.bed
+bedtools slop -i $NAME.tmp -b 1 -g $GENOME | bedtools getfasta -fi $FASTA -bed stdin -tab | sed 's/:/\t/g' | sed 's/-/\t/g' > $NAME.tmp.bed
 #3
-paste $NAME.tmp $NAME.tmp.bed | cut -f6,14 - |  awk -F "/" '{FS="/"}{OFS="\t"}{print $1,$2}' |  awk -F "" '{FS=""}{OFS="\t"}{if( ($1==$6) && ($3!="-") ){print "GOOD"}else{print "FAIL"}}' > $NAME.flag
+paste $NAME.tmp $NAME.tmp.bed | cut -f6,14 - |  awk -F "/" '{FS="/"}{OFS="\t"}{print $1,$2}' |  awk '{FS=""}{OFS="\t"}{if( ($1==$6) && ($3!="-") ){print "GOOD"}else{print "FAIL"}}' > $NAME.flag
 #4
 paste $NAME.tmp $NAME.tmp.bed $NAME.flag | awk '{if($15=="GOOD"){print $0}}' - | cut -f6,14 - |  sort -k2,2 |uniq -c | sed 's/^ \+//g' | sort -k1,1 -n | sed 's/ /\t/g' | awk '{OFS="\t"}{print $3,$2,$1}' | sed -e 's/\t[A-Z]\//_/g' > $NAME.finalVEP.triplets.counts
 
